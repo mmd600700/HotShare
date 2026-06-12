@@ -1,0 +1,56 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - 'none'  
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            extension: .exe
+            os-name: Windows
+          - os: ubuntu-latest
+            extension: 
+            os-name: Linux
+          - os: macos-latest
+            extension: 
+            os-name: macOS
+            
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    - name: Install PyInstaller
+      run: pip install pyinstaller
+    
+    - name: Build executable
+      shell: bash
+      run: |
+        if [ "${{ matrix.os }}" = "windows-latest" ]; then
+          pyinstaller --onefile --name "HotShare${{ matrix.os-name }}" --add-data "index.html;." --add-data "down.html;." --add-data "QR.py;." serv.py
+        else
+          pyinstaller --onefile --name "HotShare${{ matrix.os-name }}" --add-data "index.html:." --add-data "down.html:." --add-data "QR.py:." serv.py
+        fi
+    
+    - name: Upload to Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: dist/HotShare${{ matrix.os-name }}${{ matrix.extension }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
