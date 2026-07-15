@@ -9,8 +9,8 @@
 - 🔄 **Two-Way Transfer:** Upload and download files seamlessly from both the desktop application and the web interface.
 - 📊 **Progress Tracking:** Real-time progress bars for monitoring both upload and download transfers.
 - 🌐 **Dynamic IP Detection:** The application automatically detects and displays your correct local network IP address (no hardcoded IPs).
+- 📱 **Interactive QR Code:** Tap or click on the displayed IP address to instantly toggle and reveal a scannable QR code.
 - 📤 **Share Files from PC:** Host a simple web server to share files from your computer.
-- 🔗 **QR Code Support:** Quickly scan a QR code to open the sharing address.
 - 🔒 **Private & Offline:** Direct sharing over a hotspot or local network. No internet required.
 - 📁 **Any File Type:** Share documents, images, videos, and more.
 - 💻 **Ready-to-Use Binaries:** Download the executable file for your operating system.
@@ -45,7 +45,8 @@
    - **On the other device (or vice versa):**
      1. Ensure both devices are connected to the **same hotspot or local network**.
      2. Open a web browser on the device.
-     3. Enter the **exact dynamic address** shown in the application (e.g., `http://<Your-Local-IP>:8888`) or scan the displayed QR code. 
+     3. Enter the **exact dynamic address** shown in the application (e.g., `http://<Your-Local-IP>:8888`) or scan the QR code. 
+        > *Tip: You can tap/click on the IP address displayed in the app to toggle the view and show the QR code for easier scanning.*
         > *Note: The IP address is dynamically detected based on your specific network configuration. Do not use generic examples like `192.168.43.1`; always use the address displayed by the app.*
      4. You can now **download** files shared from the computer, or **upload** files from your device directly to the computer. A real-time **progress bar** will display the transfer status on both the web page and the application.
 
